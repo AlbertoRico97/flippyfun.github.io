@@ -3,8 +3,7 @@
 **Flippy fun** es mi propuesta individual para un juego web indie básico y minimalista en puro JavaScript** Flippy fun: controla un pez que vuela entre tuberías. ¡Sobrevive, suma puntos y bate tu record!
 
 ## Link del juego
-
-Aqui pondre el link
+flippyfun.github.io
 
 ## Características Minimalistas
 
@@ -51,3 +50,4 @@ Aqui pondre el link
 - Por qué minimalista: Un archivo y cero dependencias.
 
 **Hecho por Luis Alberto Rico Jimenez.**
+
