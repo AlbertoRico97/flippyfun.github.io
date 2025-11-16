@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flippy Fun - Juego Indie Minimalista</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Flippy Fun</h1>
+        <div class="game-wrapper">
+            <canvas id="gameCanvas" width="400" height="600"></canvas>
+            <div id="gameOver" class="game-over hidden">
+                <h2>Game Over</h2>
+                <p>Puntuación: <span id="finalScore">0</span></p>
+                <p>Mejor puntuación: <span id="highScore">0</span></p>
+                <button id="restartBtn">Reiniciar (R)</button>
+            </div>
+        </div>
+        <div class="controls">
+            <p>🖱️ Click / Espacio - Saltar</p>
+            <p>R - Reiniciar</p>
+        </div>
+        <div class="score-display">
+            <p>Puntuación: <span id="currentScore">0</span></p>
+            <p>Record: <span id="bestScore">0</span></p>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
