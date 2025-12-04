@@ -8,7 +8,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Flippy Fun</h1>
+        <div class="header">
+            <h1>🎮 Flippy Fun</h1>
+            <button id="muteBtn" class="mute-btn" title="Silenciar/Activar sonido">
+                <span class="sound-icon">🔊</span>
+            </button>
+        </div>
+        
+        <!-- Menú de selección de personaje -->
+        <div id="characterSelect" class="character-select">
+            <h2>Selecciona tu personaje</h2>
+            <div class="character-options">
+                <div class="character-card" data-character="fish">
+                    <canvas class="character-preview" id="fishPreview" width="120" height="120"></canvas>
+                    <h3>Pez Ordinario</h3>
+                    <p>🐟 Rápido y ágil</p>
+                    <button class="select-btn">Seleccionar</button>
+                </div>
+                <div class="character-card" data-character="shark">
+                    <canvas class="character-preview" id="sharkPreview" width="120" height="120"></canvas>
+                    <h3>Tiburón</h3>
+                    <p>🦈 Poderoso y temible</p>
+                    <p class="ability-text">⚡ Rompe tuberías</p>
+                    <button class="select-btn">Seleccionar</button>
+                </div>
+                <div class="character-card" data-character="jellyfish">
+                    <canvas class="character-preview" id="jellyfishPreview" width="120" height="120"></canvas>
+                    <h3>Medusa</h3>
+                    <p>🪼 Flota suavemente</p>
+                    <p class="ability-text">🎈 Caída lenta</p>
+                    <button class="select-btn">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú de selección de mundos -->
+        <div id="worldSelect" class="world-select hidden">
+            <h2>Selecciona un Mundo</h2>
+            <div id="worldOptions" class="world-options">
+                <!-- Los mundos se generarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+
         <div class="game-wrapper">
             <canvas id="gameCanvas" width="400" height="600"></canvas>
             <div id="gameOver" class="game-over hidden">
@@ -16,17 +57,24 @@
                 <p>Puntuación: <span id="finalScore">0</span></p>
                 <p>Mejor puntuación: <span id="highScore">0</span></p>
                 <button id="restartBtn">Reiniciar (R)</button>
+                <button id="changeCharBtn">Cambiar Personaje</button>
             </div>
         </div>
         <div class="controls">
             <p>🖱️ Click / Espacio - Saltar</p>
             <p>R - Reiniciar</p>
+            <p id="abilityControl" style="display: none;">⚡ Shift / E - Habilidad</p>
+            <p>💧 W - Disparar Burbujas</p>
+            <p><button id="worldMenuBtn" class="world-menu-btn">🗺️ Mundos</button></p>
         </div>
         <div class="score-display">
             <p>Puntuación: <span id="currentScore">0</span></p>
             <p>Record: <span id="bestScore">0</span></p>
+            <p id="worldInfo" class="world-info"></p>
         </div>
     </div>
+    <script src="levels.js"></script>
+    <script src="characters.js"></script>
     <script src="game.js"></script>
 </body>
 </html>

@@ -29,10 +29,55 @@ body {
     max-height: 100vh;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
 h1 {
     margin: 0;
     font-size: clamp(1.2em, 4vw, 1.8em);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mute-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    min-height: 45px;
+}
+
+.mute-btn:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: scale(1.1);
+    border-color: #ff0;
+}
+
+.mute-btn.muted {
+    background: rgba(255, 0, 0, 0.3);
+    border-color: #f00;
+}
+
+.mute-btn.muted:hover {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+.sound-icon {
+    display: inline-block;
+    line-height: 1;
 }
 
 .game-wrapper {
@@ -148,6 +193,153 @@ h1 {
     font-weight: bold;
 }
 
+.world-info {
+    color: #0f0;
+    font-weight: bold;
+}
+
+/* Botón de menú de mundos */
+.world-menu-btn {
+    background: #0f0;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.world-menu-btn:hover {
+    background: #ff0;
+    transform: scale(1.05);
+}
+
+/* Menú de mundos */
+.world-select {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    border: 3px solid #0f0;
+    max-width: 95vw;
+    width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.world-select h2 {
+    color: #ff0;
+    margin-bottom: 25px;
+    font-size: clamp(1.3em, 4vw, 1.8em);
+}
+
+.world-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.world-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.world-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #666;
+}
+
+.world-card:not(.locked):hover {
+    transform: translateY(-5px);
+    border-color: #ff0;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
+}
+
+.world-card h3 {
+    color: #0f0;
+    font-size: 1.1em;
+    margin: 0 0 10px 0;
+}
+
+.world-card.locked h3 {
+    color: #666;
+}
+
+.world-card p {
+    color: #ccc;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.world-card.locked p {
+    color: #666;
+}
+
+.world-card .world-theme {
+    font-style: italic;
+    color: #ff0;
+}
+
+.world-card .world-levels {
+    font-size: 0.85em;
+    color: #aaa;
+}
+
+.world-card .boss-name {
+    font-weight: bold;
+    color: #f55;
+}
+
+.world-card .lock-icon {
+    font-size: 2em;
+    opacity: 0.5;
+}
+
+.world-card p {
+    color: #fff;
+    font-size: 0.85em;
+    margin: 5px 0;
+}
+
+.world-card .boss-name {
+    color: #ff0;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.world-card.locked .boss-name {
+    color: #999;
+}
+
+.world-menu-btn {
+    background: rgba(0, 255, 0, 0.2);
+    border: 2px solid #0f0;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    transition: all 0.3s;
+}
+
+.world-menu-btn:hover {
+    background: rgba(0, 255, 0, 0.4);
+    transform: scale(1.05);
+}
+
+.world-info {
+    color: #0f0;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
 /* Tablet y móvil */
 @media (max-width: 768px) {
     .container {
@@ -171,6 +363,13 @@ h1 {
     
     h1 {
         font-size: 1.1em;
+    }
+    
+    .mute-btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 6px 10px;
+        font-size: 1.3em;
     }
     
     #gameCanvas {
@@ -237,5 +436,134 @@ h1 {
     .controls, .score-display {
         padding: 3px 6px;
         gap: 6px;
+    }
+}
+
+/* Menú de selección de personaje */
+.character-select {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    border: 3px solid #0f0;
+    max-width: 95vw;
+    width: 500px;
+}
+
+.character-select h2 {
+    color: #ff0;
+    margin-bottom: 25px;
+    font-size: clamp(1.3em, 4vw, 1.8em);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.character-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.character-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 180px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff0;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
+}
+
+.character-preview {
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+    margin-bottom: 10px;
+}
+
+.character-card h3 {
+    color: #0f0;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.character-card p {
+    color: #fff;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.ability-text {
+    color: #ff0 !important;
+    font-size: 0.85em !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+}
+
+.select-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-family: 'Courier New', monospace;
+    background: #0f0;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin-top: 5px;
+}
+
+.select-btn:hover {
+    background: #ff0;
+    transform: scale(1.05);
+}
+
+.character-select.hidden {
+    display: none;
+}
+
+#changeCharBtn {
+    margin-top: 10px;
+    padding: clamp(8px, 2vw, 10px) clamp(15px, 4vw, 20px);
+    font-size: clamp(0.8em, 2.5vw, 0.95em);
+    font-family: 'Courier New', monospace;
+    background: #667eea;
+    color: #fff;
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#changeCharBtn:hover {
+    background: #764ba2;
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .character-select {
+        padding: 20px 15px;
+    }
+    
+    .character-card {
+        width: 140px;
+        padding: 15px;
+    }
+    
+    .character-preview {
+        width: 100px;
+        height: 100px;
     }
 }
