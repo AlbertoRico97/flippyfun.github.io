@@ -1,5 +1,6 @@
 # Flippy fun - Juego Web
-
+## Link del juego
+https://albertorico97.github.io/flippyfun.github.io/
 
 📖 Manual de Usuario - Flippy Fun
  
@@ -55,3 +56,4 @@ Universidad: UT Hermosillo
 📞 Soporte
 GitHub: github.com/AlbertoRico97/flippyfun.github.io
 📧 Correo: a22311041@uthermosillo.edu.mx
+
