@@ -791,55 +791,8 @@ function defeatBoss() {
     state = 'ready'
   }, 2000)
   
-  // Desbloquear siguiente mundo
-  unlockNextWorld()
-}
-
-// Desbloquear siguiente mundo
-function unlockNextWorld() {
-  const progress = JSON.parse(localStorage.getItem('gameProgress') || '{"unlockedWorlds":[0],"completedWorlds":[]}')
-  
-  console.log('Progreso antes de desbloquear:', progress)
-  console.log('Mundo actual:', currentWorldIndex)
-  
-  // Marcar mundo actual como completado
-  if (!progress.completedWorlds.includes(currentWorldIndex)) {
-    progress.completedWorlds.push(currentWorldIndex)
-    console.log('Mundo marcado como completado:', currentWorldIndex)
-  }
-  
-  // Desbloquear siguiente mundo
-  const nextWorldIndex = currentWorldIndex + 1
-  if (nextWorldIndex < getAllWorlds().length && !progress.unlockedWorlds.includes(nextWorldIndex)) {
-    progress.unlockedWorlds.push(nextWorldIndex)
-    console.log('¡Mundo desbloqueado!', nextWorldIndex, '- Nombre:', getAllWorlds()[nextWorldIndex].name)
-  }
-  
-  console.log('Progreso después de desbloquear:', progress)
-  localStorage.setItem('gameProgress', JSON.stringify(progress))
-  console.log('Progreso guardado en localStorage')
-  
-  // Avanzar automáticamente al siguiente mundo si existe
-  if (nextWorldIndex < getAllWorlds().length) {
-    // Mostrar mensaje de victoria y cambio de mundo
-    setTimeout(() => {
-      currentWorldIndex = nextWorldIndex
-      currentLevelIndex = 0
-      localStorage.setItem('currentWorld', nextWorldIndex)
-      localStorage.setItem('currentLevel', 0)
-      
-      applyLevelConfig()
-      updateWorldInfo()
-      reset()
-      
-      console.log('¡Avanzando al mundo:', getAllWorlds()[nextWorldIndex].name + '!')
-    }, 2000) // Esperar 2 segundos antes de cambiar de mundo
-  } else {
-    // Si era el último mundo, mostrar mensaje de victoria total
-    setTimeout(() => {
-      alert('¡FELICIDADES! ¡Has completado todos los mundos! 🎉')
-    }, 2000)
-  }
+  // Desbloquear siguiente mundo y avanzar automáticamente
+  unlockAndAdvanceToNextWorld()
 }
 
 // Dibujar jefe
@@ -1224,12 +1177,6 @@ function hideWorldSelect() {
   elems.scoreDisplay.style.display = 'flex'
 }
 
-// Verificar si un mundo está desbloqueado
-function isWorldUnlocked(worldIndex) {
-  const progress = JSON.parse(localStorage.getItem('gameProgress') || '{"unlockedWorlds":[0],"completedWorlds":[]}')
-  return progress.unlockedWorlds.includes(worldIndex)
-}
-
 // Generar opciones de mundos
 function generateWorldOptions() {
   const worlds = getAllWorlds()
@@ -1307,27 +1254,6 @@ function selectCharacter(character) {
   if (abilityControl) {
     abilityControl.style.display = currentCharacter.ability ? 'block' : 'none'
   }
-}
-
-// Seleccionar mundo
-function selectWorld(worldIndex) {
-  const world = worlds[worldIndex]
-  
-  // Verificar si el mundo está desbloqueado
-  const progress = JSON.parse(localStorage.getItem('gameProgress') || '{"unlockedWorlds":[0],"completedWorlds":[]}')
-  if (!progress.unlockedWorlds.includes(worldIndex)) {
-    return // No hacer nada si está bloqueado
-  }
-  
-  currentWorldIndex = worldIndex
-  currentLevelIndex = 0 // Empezar desde el primer nivel del mundo
-  localStorage.setItem('currentWorld', worldIndex)
-  localStorage.setItem('currentLevel', 0)
-  
-  applyLevelConfig()
-  updateWorldInfo()
-  hideWorldSelect()
-  reset()
 }
 
 // ===== EVENTOS DE USUARIO =====

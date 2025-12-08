@@ -80,7 +80,7 @@ const fishCharacter = {
   }
 }
 
-// ========== PERSONAJE: TIBURÓN PIXEL ART ==========
+// ========== PERSONAJE: TIBURÓN  ==========
 const sharkCharacter = {
   id: 'shark',
   name: 'Tiburón',
